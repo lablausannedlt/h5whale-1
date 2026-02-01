@@ -1,4 +1,5 @@
 import { App, createBasicFetcher, H5GroveProvider } from '@h5web/app';
+import './deeplight_theme.css';   // <-- add this
 
 const fetcher = createBasicFetcher();
 
@@ -24,7 +25,10 @@ function MyApp() {
       filepath={file}
       fetcher={fetcher}
     >
-      <App />
+      {/* Wrapper enables palette override */}
+      <div className="deeplight-h5web">
+        <App />
+      </div>
     </H5GroveProvider>
   );
 }

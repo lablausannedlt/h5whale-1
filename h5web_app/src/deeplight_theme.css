@@ -1,0 +1,51 @@
+/* Deeplight palette for h5web "flat-ui" theme */
+/* Apply on the *same element* that owns the theme vars (see section 2). */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #fff; /* or your preferred light bg */
+}
+
+.deeplight-h5web {
+  height: 100%;
+  background: #fff;
+  display: flex;
+}
+
+/* ensure the App can expand inside the wrapper */
+.deeplight-h5web > * {
+  flex: 1;
+  min-height: 0;
+}
+.deeplight-h5web > * {
+  /* Base text + surface */
+  color: #061a23;
+
+  /* Primary = selection / emphasis */
+  --primary: #008dbb;
+  --primary-light: #2aa7cf; /* hover */
+  --primary-lighter: #e6f6fb; /* light panels */
+  --primary-dark: #006a8d; /* focus outlines / stronger */
+  --primary-bg: #f2fbfe; /* sidebar bg */
+  --primary-light-bg: #f7fdff; /* very light bg */
+  --primary-dark-bg: #d7eef6; /* muted blocks */
+
+  /* Secondary = toolbars / controls accent */
+  --secondary: #7ad8ee;
+  --secondary-light: #bff0fb;
+  --secondary-lighter: #e8fbff;
+  --secondary-dark: #00759c; /* labels */
+  --secondary-dark-15: rgba(0, 117, 156, 0.15);
+  --secondary-darker: #004e66;
+  --secondary-bg: #d9f4fb;
+  --secondary-light-bg: #f0fbfe;
+
+  /* Optional: plot line colors (helps “all elements” feel consistent) */
+  --h5w-line--color: #008dbb;
+  --h5w-line--colorAux: #ff8c3a, #2bb673, #e53935, #7e57c2, #f6c343;
+}

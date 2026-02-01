@@ -4,5 +4,5 @@ dist
 dist-ssr
 *.local
 *.tsbuildinfo
-
+*.h5
 __pycache__

@@ -1,0 +1,18 @@
+#dl-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 10px 6px 10px;
+  text-decoration: none;
+}
+
+#dl-brand img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+/* Optional: if it ends up in body and looks too “floating”, give it a subtle separation */
+#dl-brand {
+  z-index: 50;
+}

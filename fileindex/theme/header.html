@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>h5whale file browser</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 20px; }
+    .hint { opacity: 0.75; margin-bottom: 10px; }
+    input { padding: 6px 10px; width: 420px; max-width: 100%; }
+  </style>
+</head>
+<body>
+  <div class="hint">
+    Click a file to open it in h5whale. Folders navigate normally.
+  </div>
+
+  <input id="filter" placeholder="Filter…" oninput="filterList()"/>
+
+  <script>
+    // ✅ set this to whatever you use to access h5web from your browser
+    const H5WHALE_PORT = 8080;
+ const H5WHALE_BASE = `${location.protocol}//${location.hostname}:8080`; // h5web host port
+  const H5_EXT = /\.(h5|hdf5|hdf|nxs|nx|nc)$/i;
+
+
+    function encodePath(p) {
+      return p.split('/').map(encodeURIComponent).join('/');
+    }
+
+
+  function rewriteLinks() {
+    for (const a of document.querySelectorAll("a")) {
+      const href = a.getAttribute("href");
+      if (!href) continue;
+
+      // folders: keep normal navigation
+      if (href.endsWith("/")) continue;
+
+      // only rewrite HDF5-like files
+      if (!H5_EXT.test(href)) continue;
+
+      const url = new URL(href, location.href);
+
+      // IMPORTANT: url.pathname is already percent-encoded (spaces -> %20)
+      const rel = url.pathname.replace(/^\/+/, "");
+
+      a.href = `${H5WHALE_BASE}/?file=${rel}`;
+      a.target = "_blank";
+      a.rel = "noopener";
+    }
+  }
+
+
+    function filterList() {
+      const q = document.getElementById('filter').value.toLowerCase();
+      for (const a of document.querySelectorAll('a')) {
+        const row = a.closest('tr') || a;
+        const t = (a.textContent || '').toLowerCase();
+        row.style.display = t.includes(q) ? '' : 'none';
+      }
+    }
+
+    window.addEventListener('load', () => {
+      rewriteLinks();
+    });
+  </script>
